@@ -1,9 +1,12 @@
 # peerflix
 
-Streaming torrent client for Node.js
+Modifed Streaming torrent client for Node.js
 
 ```
+git clone https://github.com/IPLIVECO/peerflix.git
+cd peerflix
 npm install -g peerflix
+peerflix
 ```
 
 [![build status](http://img.shields.io/travis/mafintosh/peerflix.svg?style=flat)](http://travis-ci.org/mafintosh/peerflix)
