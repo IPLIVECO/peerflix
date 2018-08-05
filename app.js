@@ -337,7 +337,7 @@ var ontorrent = function (torrent) {
         console.log(page);
         res.writeHead(200, {"Content-Type": "text/plain"});
         res.write(unescape(query));
-        res.write(unescape(torrent));
+        res.write(unescape(engine.torrent.name));
         res.end();
         });
 
