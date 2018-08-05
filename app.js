@@ -333,7 +333,7 @@ var ontorrent = function (torrent) {
         var page = url.parse(req.url).pathname;
         console.log(page);
         res.writeHead(200, {"Content-Type": "text/plain"});
-        res.write(pathname);
+        res.write(page);
         res.end();
         });
 
