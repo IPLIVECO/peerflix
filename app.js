@@ -69,20 +69,6 @@ if (!filename) {
   console.error('** OMX player is the default Raspbian video player\n')
   process.exit(1)
 }
-if (argv.ser){
-  var http = require('http');
-
-
-var server = http.createServer(function(req, res) {
-
-res.writeHead(200);
-
-res.end('Hi everybody!');
-
-});
-
-server.listen(9099);
-}
 
 var VLC_ARGS = '-q' + (onTop ? ' --video-on-top' : '') + ' --play-and-exit'
 var OMX_EXEC = argv.jack ? 'omxplayer -r -o local ' : 'omxplayer -r -o hdmi '
@@ -239,7 +225,20 @@ var ontorrent = function (torrent) {
     var pausedAt = null
 
     VLC_ARGS += ' --meta-title="' + filename.replace(/"/g, '\\"') + '"'
+if (argv.ser){
+  var http = require('http');
 
+
+var server = http.createServer(function(req, res) {
+
+res.writeHead(200);
+
+res.end(localHref);
+
+});
+
+server.listen(9099);
+}
     if (argv.all) {
       filename = engine.torrent.name
       filelength = engine.torrent.length
@@ -341,7 +340,7 @@ var ontorrent = function (torrent) {
     }
     if (argv.webplay) {
       player = 'webplay'
-      openUrl('https://85d514b3e548d934d8ff7c45a54732e65a3162fe.htmlb.in/#' + localHref)
+      openUrl(localHref)
     }
     if (argv.airplay) {
       var list = require('airplayer')()
