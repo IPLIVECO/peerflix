@@ -329,10 +329,17 @@ var ontorrent = function (torrent) {
       if (argv.ser){
   var http = require('http');
 var server = http.createServer(function(req, res) {
+var instructionsNewVisitor = function(req, res) {
+
 res.writeHead(200);
-res.end('<a href="' + localHref + '">Link</a>');
-});
-server.listen(9099+'/stream');
+
+res.end('Hi everybody!');
+
+}
+
+
+var server = http.createServer(instructionsNewVisitor);
+server.listen(9099);
 }
     }
     if (argv.airplay) {
