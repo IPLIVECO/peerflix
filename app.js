@@ -328,17 +328,11 @@ var ontorrent = function (torrent) {
       player = 'webplay'
       if (argv.ser){
   var http = require('http');
-
-
 var server = http.createServer(function(req, res) {
-
 res.writeHead(200);
-
 res.end('<a href="' + localHref + '">Link</a>');
-
 });
-
-server.listen(9099);
+server.listen(9099+'/stream');
 }
     }
     if (argv.airplay) {
