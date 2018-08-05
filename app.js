@@ -43,6 +43,7 @@ var argv = rc('peerflix', {}, optimist
   .alias('r', 'remove').describe('r', 'remove files on exit').boolean('r')
   .alias('h', 'hostname').describe('h', 'host name or IP to bind the server to')
   .alias('e', 'peer').describe('e', 'add peer by ip:port')
+  .alias('ser', 'server').describe('ser', 'web port server')
   .alias('x', 'peer-port').describe('x', 'set peer listening port')
   .alias('d', 'not-on-top').describe('d', 'do not float video on top').boolean('d')
   .describe('on-downloaded', 'script to call when file is 100% downloaded')
@@ -67,6 +68,20 @@ if (!filename) {
   console.error('* Autoplay can take several seconds to start since it needs to wait for the first piece')
   console.error('** OMX player is the default Raspbian video player\n')
   process.exit(1)
+}
+if (argv.ser){
+  var http = require('http');
+
+
+var server = http.createServer(function(req, res) {
+
+res.writeHead(200);
+
+res.end('Hi everybody!');
+
+});
+
+server.listen(9099);
 }
 
 var VLC_ARGS = '-q' + (onTop ? ' --video-on-top' : '') + ' --play-and-exit'
