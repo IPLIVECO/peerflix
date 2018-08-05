@@ -327,20 +327,18 @@ var ontorrent = function (torrent) {
     if (argv.webplay) {
       player = 'webplay'
       if (argv.ser){
-  var http = require('http');
-var server = http.createServer(function(req, res) {
-var instructionsNewVisitor = function(req, res) {
+        var http = require('http');
+        var url = require('url');
+        var server = http.createServer(function(req, res) {
+        var page = url.parse(req.url).pathname;
+        console.log(page);
+        res.writeHead(200, {"Content-Type": "text/plain"});
+        res.write('Well Hello');
+        res.end();
+        });
 
-res.writeHead(200);
-
-res.end('Hi everybody!');
-
-}
-
-
-var server = http.createServer(instructionsNewVisitor);
-server.listen(9099);
-}
+        server.listen(9099);
+      }
     }
     if (argv.airplay) {
       var list = require('airplayer')()
