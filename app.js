@@ -225,20 +225,6 @@ var ontorrent = function (torrent) {
     var pausedAt = null
 
     VLC_ARGS += ' --meta-title="' + filename.replace(/"/g, '\\"') + '"'
-if (argv.ser){
-  var http = require('http');
-
-
-var server = http.createServer(function(req, res) {
-
-res.writeHead(200);
-
-res.end(localHref);
-
-});
-
-server.listen(9099);
-}
     if (argv.all) {
       filename = engine.torrent.name
       filelength = engine.torrent.length
@@ -340,7 +326,20 @@ server.listen(9099);
     }
     if (argv.webplay) {
       player = 'webplay'
-      openUrl(localHref)
+      if (argv.ser){
+  var http = require('http');
+
+
+var server = http.createServer(function(req, res) {
+
+res.writeHead(200);
+
+res.end('<a href="' + localHref + '">Link</a>');
+
+});
+
+server.listen(9099);
+}
     }
     if (argv.airplay) {
       var list = require('airplayer')()
