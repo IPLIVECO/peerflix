@@ -332,11 +332,12 @@ var ontorrent = function (torrent) {
         var server = http.createServer(function(req, res) {
         var page = url.parse(req.url).pathname;
         var url_parts = url.parse(req.url, true);
-        var params = url_parts.query;
-        var query = params.query;
+        var params = url_parts.mag;
+        var mag = params.mag;
         console.log(page);
         res.writeHead(200, {"Content-Type": "text/plain"});
-        res.write(unescape(query));
+        res.write(unescape(mag));
+        res.write(unescape(torrent));
         res.end();
         });
 
